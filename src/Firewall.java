@@ -35,7 +35,7 @@ class Firewall {
                 }
             }
         } catch (Exception e) {
-            System.out.println("Error parsing csv file.");
+            System.out.println("Error reading csv file.");
             System.out.println(e.getMessage());
         }
 
@@ -136,7 +136,6 @@ class Firewall {
      * @return A string array with original rule/packet information
      */
     public String[] decodeKey(Long key) {
-        // System.out.println("decoding key: " + key);
         String[] info = new String[4];
         info[0] = (key >> shiftDirectionKey) == 0l ? "inbound" : "outbound";// direction
         info[1] = ((key >> shiftProtocolKey) & 1l) == 0l ? "tcp" : "udp";// protocol
@@ -153,7 +152,6 @@ class Firewall {
      * @return The long value of the input ip address
      */
     private static Long ipToLong(String ipAddr) {
-        // System.out.print("Converting ip address(" + ipAddr + ") to Long-->");
         String[] ipArr = ipAddr.split("\\.");
         int ipLen = ipArr.length;
         Long ipLong = 0l;
